@@ -7,6 +7,8 @@ from django.shortcuts import get_object_or_404, redirect
 from rest_framework import status
 from rest_framework.response import Response
 from .filters import ProductFilter
+from .permissions import IsAdminOrReadOnly
+
 
 class ProductViewSet(ModelViewSet):
     serializer_class = ProductSerializer
@@ -32,5 +34,5 @@ class ProductViewSet(ModelViewSet):
 class CategoryViewSet(ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    
+    permission_classes = [IsAdminOrReadOnly]
     
