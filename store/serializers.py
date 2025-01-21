@@ -22,7 +22,7 @@ class ProductSerializer(ModelSerializer):
             "pure_price",
         ]
 
-    category = CategorySerializer()
+    category = serializers.StringRelatedField(read_only=True)
     pure_price = serializers.SerializerMethodField(read_only=True)
 
     def get_pure_price(self, product):

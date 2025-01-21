@@ -27,3 +27,10 @@ class ProductViewSet(ModelViewSet):
             return Response(status=status.HTTP_204_NO_CONTENT)
         else:
             return Response("this is related to the orderitem, delete it first")
+
+
+class CategoryViewSet(ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    
+    
