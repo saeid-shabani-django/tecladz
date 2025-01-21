@@ -19,7 +19,7 @@ class Product(models.Model):
     unit_price = models.DecimalField(max_digits=7, decimal_places=3)
     description = models.TextField()
     category = models.ForeignKey(
-        Category, on_delete=models.CASCADE, related_name="products"
+        Category, on_delete=models.PROTECT, related_name="products"
     )
     inventory = models.IntegerField()
     datetime_created = models.DateTimeField(auto_now_add=True)
