@@ -77,23 +77,26 @@ class CustomerAdmin(admin.ModelAdmin):
     def email(self, customer):
         return customer.user.email
 
+
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
     fields = ["product", "quantity", "unit_price"]
     extra = 0
-    
 
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ["id", "customer", "status", "datetime_created",]
+    list_display = [
+        "id",
+        "customer",
+        "status",
+        "datetime_created",
+    ]
     list_editable = ["status"]
     list_per_page = 10
     inlines = [OrderItemInline]
-    
+
 
 @admin.register(OrderItem)
 class OrderItemAdmin(admin.ModelAdmin):
     list_display = ["order", "product", "quantity", "unit_price"]
-
-

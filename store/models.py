@@ -26,7 +26,9 @@ class Product(models.Model):
     datetime_modified = models.DateTimeField(auto_now=True)
     slug = models.SlugField()
     has_discount = models.BooleanField(default=False, blank=True, null=True)
-    discount = models.FloatField(null=True, blank=True)
+    discount = models.DecimalField(
+        max_digits=2, decimal_places=2, null=True, blank=True
+    )
 
     def __str__(self):
         return self.title
