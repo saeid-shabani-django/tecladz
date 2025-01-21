@@ -21,15 +21,13 @@ from .serializers import (
 
 class ProductViewSet(ModelViewSet):
     serializer_class = ProductSerializer
+    queryset = Product.objects.select_related("category").all()
     filter_backends = [SearchFilter, DjangoFilterBackend, OrderingFilter]
     ordering_fields = ["inventory", "unit_price"]
     search_fields = [
         "title",
     ]
     filterset_class = ProductFilter
-
-    def get_queryset(self):
-        queryset = Product.objects.select_related("category").all()
 
     def destroy(self, request, pk):
         product = get_object_or_404(Product.objects.select_related("category"), pk=pk)
