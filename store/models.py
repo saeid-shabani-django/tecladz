@@ -2,6 +2,7 @@ from django.db import models
 from uuid import uuid4
 from django.conf import settings
 
+
 class Category(models.Model):
     name = models.CharField(max_length=200, verbose_name="category")
     description = models.CharField(max_length=500)
@@ -25,23 +26,23 @@ class Product(models.Model):
     datetime_modified = models.DateTimeField(auto_now=True)
     slug = models.SlugField()
     has_discount = models.BooleanField(default=False, blank=True, null=True)
-    discount = models.FloatField(null=True,blank=True)
+    discount = models.FloatField(null=True, blank=True)
 
     def __str__(self):
         return self.title
 
+
 class Customer(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     phone_number = models.CharField(max_length=12)
     birth_date = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
-    
+
     @property
     def full_name(self):
-        return f'{self.user.first_name} {self.user.last_name}'
-
+        return f"{self.user.first_name} {self.user.last_name}"
 
 
 class Order(models.Model):
@@ -79,11 +80,14 @@ class OrderItem(models.Model):
 
 
 class Cart(models.Model):
-    id = models.UUIDField(primary_key=True,default=uuid4)
+    id = models.UUIDField(primary_key=True, default=uuid4)
     datetime_created = models.DateTimeField(auto_now_add=True)
 
+
 class CartItem(models.Model):
-    product = models.ForeignKey(Product,on_delete=models.CASCADE,related_name='cart_items')
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name="cart_items"
+    )
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name="items")
     quantity = models.IntegerField()
 
