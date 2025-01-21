@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # third party apps
     'rest_framework',
     "debug_toolbar",
+    'django_filters',
 
 
     # we install these apps
