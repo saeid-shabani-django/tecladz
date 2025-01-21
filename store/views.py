@@ -6,7 +6,7 @@ from .models import Product, Category, OrderItem
 from django.shortcuts import get_object_or_404, redirect
 from rest_framework import status
 from rest_framework.response import Response
-
+from .filters import ProductFilter
 
 class ProductViewSet(ModelViewSet):
     serializer_class = ProductSerializer
@@ -15,6 +15,7 @@ class ProductViewSet(ModelViewSet):
     search_fields = [
         "title",
     ]
+    filterset_class = ProductFilter
 
     def get_queryset(self):
         queryset = Product.objects.select_related("category").all()
