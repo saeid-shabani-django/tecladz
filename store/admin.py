@@ -3,6 +3,7 @@ from django.db.models import Count, Prefetch
 from .models import Product, Category, Cart, CartItem, Customer, Order, OrderItem
 
 
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = [
