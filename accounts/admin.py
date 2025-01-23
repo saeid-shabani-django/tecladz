@@ -12,9 +12,9 @@ class CustomUserAdmin(UserAdmin):
             None,
             {
                 "classes": ("wide",),
-                "fields": ("username","email","age", "password1", "password2"),
+                "fields": ("username","email", "password1", "password2"),
             },
         ),
     )
 
-    list_display = ("username", "email", "age" ,"first_name", "last_name", "is_staff")
+    list_display = ("username", "email" ,"first_name", "last_name", "is_staff")
