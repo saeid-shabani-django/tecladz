@@ -3,4 +3,9 @@ from django.db import models
 
 class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
+    username = None
+    USERNAME_FIELD = 'email'
+    
+    def __str__(self):
+        return self.email
     

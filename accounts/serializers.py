@@ -1,8 +1,9 @@
 from djoser.serializers import UserCreateSerializer as DjangoUserCreateSerializer
 from djoser.serializers import UserSerializer as DjangoUserSerializer
-
+from .models import CustomUser
 class UserCreateSerializer(DjangoUserCreateSerializer):
-    class Meta(DjangoUserCreateSerializer.Meta):
+    class Meta:
+        model = CustomUser
         fields=['email','password']
 
 
