@@ -25,12 +25,13 @@ class ProductSerializer(ModelSerializer):
             "pure_price",
         ]
 
-    category = serializers.StringRelatedField(read_only=True)
+    category = serializers.StringRelatedField()
     pure_price = serializers.SerializerMethodField(read_only=True)
 
     def get_pure_price(self, product):
         if product.has_discount:
-            return round(product.unit_price * product.discount, 5)
+            return round(product.unit_price - (product.unit_price * product.discount), 5)
+        return product.unit_price
 
     def validate(self, data):
 

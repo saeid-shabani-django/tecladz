@@ -4,12 +4,13 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter, SearchFilter
 from .models import Product, Category, OrderItem, Cart, CartItem, Customer
 from django.shortcuts import get_object_or_404, redirect
-from rest_framework import status
+from rest_framework import status, permissions
 from rest_framework.response import Response
 from .filters import ProductFilter
 from .permissions import IsAdminOrReadOnly
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.decorators import action
+from .permissions import IsAdminOrReadOnly
 from .serializers import (
     CreateCartItemSerializer,
     CartItemSerializer,
@@ -22,6 +23,7 @@ from .serializers import (
 class ProductViewSet(ModelViewSet):
     serializer_class = ProductSerializer
     queryset = Product.objects.select_related("category").all()
+    permission_classes = [IsAdminUser]
     filter_backends = [SearchFilter, DjangoFilterBackend, OrderingFilter]
     ordering_fields = ["inventory", "unit_price"]
     search_fields = [
@@ -36,7 +38,11 @@ class ProductViewSet(ModelViewSet):
             return Response(status=status.HTTP_204_NO_CONTENT)
         else:
             return Response("this is related to the orderitem, delete it first")
-
+   
+    def get_permissions(self):
+        if self.action == 'list' or self.action == 'retrieve':
+            return [permissions.AllowAny()]
+        return super().get_permissions()
 
 class CategoryViewSet(ModelViewSet):
     queryset = Category.objects.all()
