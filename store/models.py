@@ -4,7 +4,7 @@ from django.conf import settings
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=200, verbose_name="category")
+    name = models.CharField(max_length=200, verbose_name="category name")
     description = models.CharField(max_length=500)
 
     class Meta:
@@ -24,7 +24,7 @@ class Product(models.Model):
     inventory = models.IntegerField()
     datetime_created = models.DateTimeField(auto_now_add=True)
     datetime_modified = models.DateTimeField(auto_now=True)
-    slug = models.SlugField()
+    slug = models.SlugField(blank=True,null=True)
     has_discount = models.BooleanField(default=False, blank=True, null=True)
     discount = models.DecimalField(
         max_digits=2, decimal_places=2, null=True, blank=True
