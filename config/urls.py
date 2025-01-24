@@ -19,6 +19,8 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from django.urls import path, include
+from accounts.views import CustomRegistrationView, ActivationView
 
    
 admin.site.site_header = "tecladz"
@@ -32,6 +34,11 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
-] 
+    path('api/auth/register/', CustomRegistrationView.as_view(), name='register'),
+    path('api/auth/activate/<str:token>/', ActivationView.as_view(), name='activate'),
+    path('api/auth/activate/<str:token>/', ActivationView.as_view(), name='activation'),
+
+]
+
 
 
