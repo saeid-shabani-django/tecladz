@@ -67,7 +67,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
 class CustomerSerializer(serializers.ModelSerializer):
 
-    user = CustomUserSerializer()
+    user = CustomUserSerializer(read_only=True)
 
     class Meta:
         model = Customer

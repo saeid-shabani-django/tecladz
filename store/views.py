@@ -1,11 +1,12 @@
 from rest_framework.viewsets import ModelViewSet
-from .serializers import ProductSerializer, CategorySerializer, CartSerializer
+from .serializers import ProductSerializer, CategorySerializer, CartSerializer,OrderCreateSerializer,OrderUpdateSerializer,OrderSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter, SearchFilter
-from .models import Product, Category, OrderItem, Cart, CartItem, Customer
+from .models import Product, Category, OrderItem, Cart, CartItem, Customer,Order
 from django.shortcuts import get_object_or_404, redirect
 from rest_framework import status, permissions
 from rest_framework.response import Response
+from django.db.models import Prefetch
 from .filters import ProductFilter
 from .permissions import IsAdminOrReadOnly
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
@@ -65,6 +66,7 @@ class CategoryViewSet(ModelViewSet):
 
 
 class CustomerViewSet(ModelViewSet):
+    http_method_names=['get','put']
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
     permission_classes = [IsAdminUser]
