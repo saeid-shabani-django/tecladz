@@ -31,7 +31,7 @@ class ProductSerializer(ModelSerializer):
     def get_pure_price(self, product):
         if product.has_discount:
             return round(
-                product.unit_price - (product.unit_price * product.discount), 5
+                product.unit_price - (product.unit_price * product.discount), 0
             )
         return product.unit_price
 

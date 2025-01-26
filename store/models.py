@@ -16,7 +16,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     title = models.CharField(max_length=200, verbose_name="title")
-    unit_price = models.DecimalField(max_digits=7, decimal_places=3)
+    unit_price = models.IntegerField()
     description = models.TextField()
     category = models.ForeignKey(
         Category, on_delete=models.PROTECT, related_name="products"
@@ -48,9 +48,9 @@ class Customer(models.Model):
 
 
 class Order(models.Model):
-    ORDER_STATUS_PAID = "p"
-    ORDER_STATUS_UNPAID = "u"
-    ORDER_STATUS_CANCELED = "c"
+    ORDER_STATUS_PAID = "paid"
+    ORDER_STATUS_UNPAID = "unpaid"
+    ORDER_STATUS_CANCELED = "caceled"
     ORDER_STATUS = [
         (ORDER_STATUS_PAID, "Paid"),
         (ORDER_STATUS_UNPAID, "Unpaid"),
@@ -64,7 +64,14 @@ class Order(models.Model):
     status = models.CharField(
         max_length=1, choices=ORDER_STATUS, default=ORDER_STATUS_UNPAID
     )
+    authority_from_zarinpal = models.CharField(max_length=200,blank=True)
+    ref_id_from_zarinpal = models.CharField(max_length=200,blank=True)
+    data_from_zarinpal = models.TextField(blank=True) # including cart_pan,card_hash etc
 
+    def get_total_price(self):
+        items = self.items.all()
+        return sum(item.quantity * item.unit_price for item in items)
+    
     def __str__(self):
         return f"Order id={self.id}"
 
@@ -75,7 +82,7 @@ class OrderItem(models.Model):
         Product, on_delete=models.PROTECT, related_name="order_items"
     )
     quantity = models.PositiveSmallIntegerField()
-    unit_price = models.DecimalField(max_digits=7, decimal_places=3)
+    unit_price = models.IntegerField()
 
     class Meta:
         unique_together = [["order", "product"]]

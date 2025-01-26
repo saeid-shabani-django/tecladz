@@ -35,6 +35,7 @@ urlpatterns = [
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
     path('api/auth/register/', CustomRegistrationView.as_view(), name='register'),
+    path('payment/',include('payment.urls')),
     path('api/auth/activate/<str:token>/', ActivationView.as_view(), name='activate'),
     path('api/auth/activate/<str:token>/', ActivationView.as_view(), name='activation'),
 
