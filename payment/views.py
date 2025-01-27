@@ -6,6 +6,7 @@ import requests
 import json
 from django.contrib.auth import get_user_model
 from rest_framework.decorators import api_view
+from django.conf import settings
 
 def payment(request):
     customer_id = request.user.id
@@ -20,7 +21,7 @@ def payment(request):
 
 
     request_data = {
-        "merchant_id": "07d2feec-2010-4bb2-a380-f0f4d4075453",
+        "merchant_id": '07d2feec-2010-4bb2-a380-f0f4d4075453',
         "amount": total_price,
         "callback_url": request.build_absolute_uri(reverse('payment_callback')),
         "description": f"tecladz transaction for the user:  {request.user.email}",

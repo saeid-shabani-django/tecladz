@@ -13,7 +13,7 @@ from datetime import timedelta
 from pathlib import Path
 from environ import Env
 env = Env()
-
+env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -164,7 +164,7 @@ SIMPLE_JWT = {
 DJOSER = {
     'USER_ID_FIELD': 'email',
     'LOGIN_FIELD': 'email',
-    'SEND_ACTIVATION_EMAIL': False, # we will do it manually
+    'SEND_ACTIVATION_EMAIL': False,
     'SERIALIZERS': {
         'user_create': 'accounts.serializers.UserCreateSerializer',
         'current_user': 'accounts.serializers.UserSerializer',
@@ -176,7 +176,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'gettingbtcnow@gmail.com'  # Use environment variables
+EMAIL_HOST_USER = 'gettingbtcnow@gmail.com'  
 EMAIL_HOST_PASSWORD = 'qrhd voei xtgi thod'
 
 
@@ -185,5 +185,4 @@ CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
-
 
