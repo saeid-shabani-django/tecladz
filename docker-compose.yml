@@ -22,7 +22,7 @@ services:
       - "6379:6379"
   celery_worker:
     build: .
-    command: celery -A config worker -l INFO
+    command: celery -A config worker --loglevel=info
     depends_on:
       - web
       - redis

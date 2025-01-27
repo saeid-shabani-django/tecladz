@@ -164,7 +164,9 @@ SIMPLE_JWT = {
 DJOSER = {
     'USER_ID_FIELD': 'email',
     'LOGIN_FIELD': 'email',
-    'SEND_ACTIVATION_EMAIL': False,
+    'SEND_ACTIVATION_EMAIL': True,
+    'ACTIVATION_URL': 'activate/{uid}/{token}',
+    'PASSWORD_RESET_CONFIRM_URL': 'password-reset/{uid}/{token}',
     'SERIALIZERS': {
         'user_create': 'accounts.serializers.UserCreateSerializer',
         'current_user': 'accounts.serializers.UserSerializer',
@@ -185,4 +187,5 @@ CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
-
+broker_connection_retry_on_startup = True  
+broker_connection_retry = True 
