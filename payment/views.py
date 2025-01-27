@@ -71,7 +71,7 @@ def payment_callback_view(request):
                 order.ref_id_from_zarinpal = data['ref_id']
                 order.data_from_zarinpal = data
                 order.save()
-                return Response('the payment process was successful',status=status.HTTP_200_OK)
+return Response('the payment process was successful',status=status.HTTP_200_OK)
             elif payment_code == 101:
                 return Response('the payment has been proceed before',status=status.HTTP_200_OK)
             else:

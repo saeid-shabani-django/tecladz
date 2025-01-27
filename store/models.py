@@ -62,7 +62,7 @@ class Order(models.Model):
     )
     datetime_created = models.DateTimeField(auto_now_add=True)
     status = models.CharField(
-        max_length=1, choices=ORDER_STATUS, default=ORDER_STATUS_UNPAID
+        max_length=10, choices=ORDER_STATUS, default=ORDER_STATUS_UNPAID
     )
     authority_from_zarinpal = models.CharField(max_length=200,blank=True)
     ref_id_from_zarinpal = models.CharField(max_length=200,blank=True)
