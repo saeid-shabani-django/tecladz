@@ -19,7 +19,7 @@ this is a simple website shopping, created as a test for tecladz team<br />
 `https://github.com/saeid-shabani-django`
 Then make sure Docker is running.
 ## download the project
-`git clone https://github.com/saeid-shabani-django/tecladz-1.0`
+`git clone https://github.com/saeid-shabani-django/tecladz`
 -   If you are on windows click on the Docker Desktop icon and wait for about a minute.
 
 Then in the project directory run this command:<br />
