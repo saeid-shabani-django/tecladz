@@ -1,6 +1,6 @@
 >"in software, the most beautiful code is the one that works." 
 >linus torvalds
-# Techlads website DRF
+# Tecladz website DRF
 ---
 ***what is the project?***
 this is a simple website shopping, created as a test for tecladz team<br />
