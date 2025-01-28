@@ -15,9 +15,9 @@ this is a simple website shopping, created as a test for tecladz team<br />
 
 # how to use?
 
-**If you want to get notified about the future changes Follow my github account.**
-`https://github.com/saeid-shabani-django`
-Then make sure Docker is running.
+**If you want to get notified about the future changes Follow my github account.**<br />
+`https://github.com/saeid-shabani-django`<br />
+Then make sure Docker is running.<br />
 ## download the project
 `git clone https://github.com/saeid-shabani-django/tecladz`
 -   If you are on windows click on the Docker Desktop icon and wait for about a minute.
